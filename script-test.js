@@ -224,11 +224,11 @@ function renderQuestion() {
   optionsContainer.innerHTML = ''; // 이전 선택지 초기화
 
   if (currentQuestion.type === 'slider') {
-    // ---- 슬라이더 타입 렌더링 ----
+    // ---- [개선] 5단계 눈금 선택형 가치관 UI 렌더링 ----
     const sliderWrapper = document.createElement('div');
     sliderWrapper.className = 'slider-wrapper';
 
-    // 좌우 가이드 라벨
+    // 좌우 지향점 안내 라벨 생성
     const labelsDiv  = document.createElement('div');
     labelsDiv.className = 'slider-labels';
     const leftSpan   = document.createElement('span');
@@ -239,46 +239,121 @@ function renderQuestion() {
     rightSpan.textContent = currentQuestion.rightLabel[currentLang];
     labelsDiv.appendChild(leftSpan);
     labelsDiv.appendChild(rightSpan);
+    sliderWrapper.appendChild(labelsDiv);
 
-    // 슬라이더 인풋 (0~100 범위)
-    const sliderInput = document.createElement('input');
-    sliderInput.type  = 'range';
-    sliderInput.min   = '0';
-    sliderInput.max   = '100';
-    sliderInput.value = '50'; // 기본값: 중간
-    sliderInput.className = 'custom-range-slider';
+    // 가로 눈금 트랙 컨테이너 생성
+    const scaleContainer = document.createElement('div');
+    scaleContainer.className = 'scale-container';
+    scaleContainer.style.display = 'flex';
+    scaleContainer.style.justifyContent = 'space-between';
+    scaleContainer.style.alignItems = 'center';
+    scaleContainer.style.position = 'relative';
+    scaleContainer.style.width = '100%';
+    scaleContainer.style.margin = '28px 0 16px';
+    scaleContainer.style.padding = '0 10px';
 
-    // 현재 선택 위치 안내 텍스트
+    // 눈금 배경 연결 선(트랙)
+    const trackLine = document.createElement('div');
+    trackLine.style.position = 'absolute';
+    trackLine.style.top = '50%';
+    trackLine.style.left = '10px';
+    trackLine.style.right = '10px';
+    trackLine.style.height = '4px';
+    trackLine.style.backgroundColor = '#EAE3D9';
+    trackLine.style.transform = 'translateY(-50%)';
+    trackLine.style.zIndex = '1';
+    scaleContainer.appendChild(trackLine);
+
+    // 5개 척도 눈금 데이터 정의 (값 및 피드백 설명)
+    const steps = [
+      { val: 0,   desc: { ko: "매우 선호", en: "Strongly Prefer Left" } },
+      { val: 25,  desc: { ko: "약간 선호", en: "Prefer Left" } },
+      { val: 50,  desc: { ko: "균형/중간", en: "Neutral" } },
+      { val: 75,  desc: { ko: "약간 선호", en: "Prefer Right" } },
+      { val: 100, desc: { ko: "매우 선호", en: "Strongly Prefer Right" } }
+    ];
+
+    let selectedValue = 50; // 기본 선택값: 보통(50)
+
+    // 현재 선택 가이드 텍스트 안내 영역
     const valueIndicator = document.createElement('div');
     valueIndicator.className = 'slider-value-indicator';
     valueIndicator.textContent = currentLang === 'ko' ? '⚖️ 균형 (Neutral)' : '⚖️ Balanced (Neutral)';
 
-    // 슬라이더 이동 시 안내 텍스트 실시간 업데이트
-    sliderInput.addEventListener('input', () => {
-      const val = parseInt(sliderInput.value);
-      if (val < 40) {
-        valueIndicator.textContent = currentLang === 'ko'
-          ? `👈 '${currentQuestion.leftLabel[currentLang]}' 지향`
-          : `👈 Prefer '${currentQuestion.leftLabel[currentLang]}'`;
-      } else if (val > 60) {
-        valueIndicator.textContent = currentLang === 'ko'
-          ? `👉 '${currentQuestion.rightLabel[currentLang]}' 지향`
-          : `👉 Prefer '${currentQuestion.rightLabel[currentLang]}'`;
-      } else {
-        valueIndicator.textContent = currentLang === 'ko' ? '⚖️ 균형 (Neutral)' : '⚖️ Balanced (Neutral)';
+    // 5개의 원형 버튼 생성 및 배치
+    const circles = [];
+    steps.forEach((step, idx) => {
+      const circleBtn = document.createElement('button');
+      circleBtn.type = 'button';
+      circleBtn.className = 'scale-circle-btn';
+      circleBtn.style.width = idx === 2 ? '22px' : '18px'; // 보통(가운데) 지점은 크기를 살짝 다르게
+      circleBtn.style.height = idx === 2 ? '22px' : '18px';
+      circleBtn.style.borderRadius = '50%';
+      circleBtn.style.border = '3px solid #FFFFFF';
+      circleBtn.style.backgroundColor = '#EAE3D9';
+      circleBtn.style.cursor = 'pointer';
+      circleBtn.style.zIndex = '2';
+      circleBtn.style.position = 'relative';
+      circleBtn.style.transition = 'all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1)';
+      circleBtn.style.boxShadow = '0 2px 6px rgba(0,0,0,0.1)';
+
+      // 3번째 보통(Neutral) 지점 기본 하이라이트 활성화
+      if (idx === 2) {
+        circleBtn.style.backgroundColor = 'var(--color-primary)';
+        circleBtn.style.transform = 'scale(1.2)';
+        circleBtn.style.borderColor = '#FFFFFF';
+        circleBtn.style.boxShadow = '0 4px 10px rgba(255, 126, 54, 0.4)';
       }
+
+      // 클릭 시 해당 지점 하이라이트 및 안내 텍스트 갱신 이벤트
+      circleBtn.addEventListener('click', () => {
+        selectedValue = step.val;
+        
+        // 전체 원형 버튼 비활성화 상태 스타일 초기화
+        circles.forEach((c) => {
+          c.style.backgroundColor = '#EAE3D9';
+          c.style.transform = 'scale(1)';
+          c.style.boxShadow = '0 2px 6px rgba(0,0,0,0.1)';
+        });
+
+        // 현재 클릭한 버튼 활성화 하이라이트
+        circleBtn.style.backgroundColor = 'var(--color-primary)';
+        circleBtn.style.transform = 'scale(1.25)';
+        circleBtn.style.boxShadow = '0 4px 12px rgba(255, 126, 54, 0.5)';
+
+        // 한국어/영어 가이드 문구 매핑
+        if (idx === 2) {
+          valueIndicator.textContent = currentLang === 'ko' ? '⚖️ 균형 (Neutral)' : '⚖️ Balanced (Neutral)';
+        } else if (idx < 2) {
+          valueIndicator.textContent = currentLang === 'ko'
+            ? `👈 '${currentQuestion.leftLabel[currentLang]}' (${step.desc[currentLang]})`
+            : `👈 '${currentQuestion.leftLabel[currentLang]}' (${step.desc[currentLang]})`;
+        } else {
+          valueIndicator.textContent = currentLang === 'ko'
+            ? `👉 '${currentQuestion.rightLabel[currentLang]}' (${step.desc[currentLang]})`
+            : `👉 '${currentQuestion.rightLabel[currentLang]}' (${step.desc[currentLang]})`;
+        }
+      });
+
+      scaleContainer.appendChild(circleBtn);
+      circles.push(circleBtn);
     });
 
-    // 선택 확인 버튼
+    sliderWrapper.appendChild(scaleContainer);
+    sliderWrapper.appendChild(valueIndicator);
+
+    // 선택 확인 및 제출 버튼 생성
     const submitBtn = document.createElement('button');
     submitBtn.className = 'btn btn-primary ripple slider-submit-btn';
+    submitBtn.style.marginTop = '16px';
     submitBtn.textContent = currentLang === 'ko' ? '이 가치관 선택하기' : 'Apply Vibe';
 
+    // 제출 시 퀴즈 점수 합산 연산
     submitBtn.addEventListener('click', () => {
-      const finalVal   = parseInt(sliderInput.value);
+      const finalVal   = selectedValue;
       const thresholds = currentQuestion.sliderScores.thresholds;
 
-      // 슬라이더 위치가 해당 구간에 맞는 점수 부여
+      // 선택한 정수가 해당 구간에 포함되는지 파악하여 국가 가중치 부여
       thresholds.forEach(t => {
         const [min, max] = t.range;
         if (finalVal >= min && finalVal <= max) {
@@ -293,9 +368,6 @@ function renderQuestion() {
       nextStep();
     });
 
-    sliderWrapper.appendChild(labelsDiv);
-    sliderWrapper.appendChild(sliderInput);
-    sliderWrapper.appendChild(valueIndicator);
     sliderWrapper.appendChild(submitBtn);
     optionsContainer.appendChild(sliderWrapper);
 

@@ -7,7 +7,7 @@
 window.activeTestData = {
   id: "soul-country",
   title: {
-    ko: "나에게 맞는 소울 컨트리 찾기",
+    ko: "나에게 맞는 찰떡 궁합 나라 찾기",
     en: "Where is My Soul Country?"
   },
   description: {

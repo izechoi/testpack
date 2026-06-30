@@ -8,7 +8,7 @@ const testsRegistry = {
   "parenting-style": {
     id: "parenting-style",
     title: {
-      ko: "육아 유형 테스트",
+      ko: "부모 유형 테스트",
       en: "Parenting Style Test"
     },
     description: {
@@ -23,7 +23,7 @@ const testsRegistry = {
   "soul-country": {
     id: "soul-country",
     title: {
-      ko: "소울 컨트리 테스트",
+      ko: "찰떡 궁합 나라 찾기",
       en: "Soul Country Test"
     },
     description: {

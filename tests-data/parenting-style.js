@@ -6,7 +6,7 @@
 window.activeTestData = {
   id: "parenting-style",
   title: {
-    ko: "우리 집 거실 육아 유형 테스트",
+    ko: "우리 집 거실 부모 유형 테스트",
     en: "Living Room Parenting Style Test"
   },
   description: {
@@ -21,7 +21,7 @@ window.activeTestData = {
     daily: { ko: "일상 속 내 모습 (현실 고증)", en: "My Daily Life Scene" },
     strengths: { ko: "부모로서의 멋진 장점", en: "My Greatest Strengths" },
     weaknesses: { ko: "살짝 매콤한 현실 피드백", en: "Real Advice for You" },
-    prescription: { ko: "맞춤형 현실 육아 처방전", en: "Parenting Prescription" }
+    prescription: { ko: "맞춤형 현실 부모 처방전", en: "Parenting Prescription" }
   },
   questions: [
     {
