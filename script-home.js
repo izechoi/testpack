@@ -11,13 +11,13 @@
 const i18nDict = {
   ko: {
     portal_badge: "글로벌 성향 & 심리 테스트",
-    portal_title: "내 안의 숨겨진 성향<br><span class=\"highlight\">테스트 포털</span>",
+    portal_title: "유형 검사 분석 포털",
     portal_subtitle: "나의 소울 국가 매칭부터 전생 위인 분석, 개성 만점 MBTI 테스트까지 한 곳에서 즐겨보세요!",
     portal_footer: "© 2026 테스트 연구소. All rights reserved."
   },
   en: {
     portal_badge: "Global Persona & Mind Tests",
-    portal_title: "Uncover Your Self<br><span class=\"highlight\">Test Portal</span>",
+    portal_title: "Type Analysis Portal",
     portal_subtitle: "From matching your soul country to discovering your past life and personality character tests!",
     portal_footer: "© 2026 Test Lab. All rights reserved."
   }
