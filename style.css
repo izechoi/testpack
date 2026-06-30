@@ -929,3 +929,34 @@ body {
   color: #5C544C;
 }
 
+/* ==========================================================================
+   9. 모바일 및 카카오톡 인앱 브라우저 뷰포트 최적화 미디어 쿼리
+   ========================================================================== */
+@media screen and (max-width: 480px) {
+  body {
+    align-items: flex-start; /* 모바일 화면 상단부터 콘텐츠 배치 */
+    min-height: auto;
+    background-color: #FFFDF9; /* 폰 컨테이너 크림 배경색과 통일하여 여백 색감 일치 */
+  }
+
+  .phone-container {
+    max-width: 100%;
+    height: auto;
+    min-height: 100vh;
+    min-height: 100dvh;
+    box-shadow: none;
+    border-left: none;
+    border-right: none;
+    overflow: visible; /* 잘림 현상 방지 */
+  }
+
+  .screen {
+    position: relative; /* absolute 위치 가두기를 해제하여 자연스러운 높이 확보 */
+    height: auto;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow-y: visible; /* 개별 스크롤 대신 기기 전체 자연스러운 스크롤 지원 */
+    padding: 20px 16px 40px; /* 모바일 하단 공간 여백 확보 */
+  }
+}
+
