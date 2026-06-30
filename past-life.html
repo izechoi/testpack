@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="이순신 장군부터 클레오파트라까지! 10가지 딜레마 질문으로 전생에 내가 어떤 역사적 위인이었는지 무료로 알아보세요.">
+  <title>재미로 보는 나의 전생 유형 테스트 - 테스트 연구소</title>
+  <link rel="stylesheet" as="style" crossorigin
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+  <link rel="stylesheet" href="style.css?v=20260630_v12_multipage">
+  <script>window.CURRENT_TEST_ID = 'past-life';</script>
+</head>
+
+<body>
+
+  <div id="phone-container" class="phone-container">
+
+    <!-- 화면 1: 인트로 화면 -->
+    <section id="intro-screen" class="screen active">
+      <div class="screen-header">
+        <button id="back-to-home" class="btn-back" data-i18n="back_btn">↩ 홈으로</button>
+      </div>
+      <div class="intro-content">
+        <div id="intro-badge" class="badge">전생 유형 진단</div>
+        <h1 id="intro-title" class="main-title">테스트 제목 로딩 중...</h1>
+        <p id="intro-desc" class="subtitle">테스트 설명 로딩 중...</p>
+
+        <div class="intro-banner">
+          <div class="decor-circle circle-1"></div>
+          <div class="decor-circle circle-2"></div>
+          <img id="intro-image" src="images/past-life-main.png" alt="전생 테스트 배너 이미지" class="banner-img floating">
+        </div>
+
+        <button id="start-btn" class="btn btn-primary ripple" data-i18n="start_btn">테스트 시작하기</button>
+        <p class="intro-footer">
+          <span data-i18n="intro_duration">소요 시간: 약 3분</span> |
+          <span data-i18n="intro_questions">문항 수: 10개</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- 화면 2: 테스트 진행 화면 -->
+    <section id="test-screen" class="screen">
+      <div class="test-header">
+        <span id="question-counter" class="counter">01 / 10</span>
+        <div class="progress-bar-container">
+          <div id="progress-bar" class="progress-bar" style="width: 10%;"></div>
+        </div>
+      </div>
+      <div class="question-container">
+        <div class="card-decor"></div>
+        <h2 id="question-text" class="question-title">질문 로딩 중...</h2>
+      </div>
+      <div id="options-container" class="options-container"></div>
+    </section>
+
+    <!-- 화면 3: 결과 분석 로딩 화면 -->
+    <section id="loading-screen" class="screen">
+      <div class="loading-content">
+        <div class="spinner-box">
+          <div class="circle-border">
+            <div class="circle-core"></div>
+          </div>
+        </div>
+        <h2 class="loading-title" data-i18n="loading_title">분석 엔진 가동 중...</h2>
+        <div class="loading-tips">
+          <p class="tip-text active" data-i18n="loading_tip_1">"답변 데이터 가중치 연산 중..."</p>
+          <p class="tip-text" data-i18n="loading_tip_2">"당신만의 특별한 성향 데이터를 분석하는 중..."</p>
+          <p class="tip-text" data-i18n="loading_tip_3">"매칭 결과를 촘촘히 큐레이션하는 중..."</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 화면 4: 테스트 결과 화면 -->
+    <section id="result-screen" class="screen">
+      <div class="result-content">
+
+        <div id="result-badge" class="badge-result" data-i18n="result_badge">나의 테스트 결과는?</div>
+
+        <div class="result-header">
+          <div class="result-img-box">
+            <img id="result-image" src="" alt="결과 위인 카툰 이미지">
+          </div>
+          <h2 id="result-animal" class="result-animal-name">결과 위인명</h2>
+          <h3 id="result-title" class="result-type-title">유형 타이틀</h3>
+          <div id="result-traits" class="result-tags"></div>
+        </div>
+
+        <div class="result-details">
+          <div class="detail-card">
+            <div class="card-icon">💡</div>
+            <h4 id="label-summary">전생 성향 요약</h4>
+            <p id="result-summary">요약 설명</p>
+          </div>
+          <div class="detail-card">
+            <div class="card-icon">⏳</div>
+            <h4 id="label-daily">전생의 하루</h4>
+            <p id="result-daily">일상 모습</p>
+          </div>
+          <div class="detail-card border-green">
+            <div class="card-icon">✨</div>
+            <h4 id="label-strengths">전생의 빛나는 강점</h4>
+            <p id="result-strengths">장점 설명</p>
+          </div>
+          <div class="detail-card border-red">
+            <div class="card-icon">⚠️</div>
+            <h4 id="label-weaknesses">전생의 아쉬운 면</h4>
+            <p id="result-weaknesses">단점 설명</p>
+          </div>
+          <div class="detail-card border-purple">
+            <div class="card-icon">💊</div>
+            <h4 id="label-prescription">현생에서 이어받을 유산</h4>
+            <p id="result-prescription">처방전 솔루션</p>
+          </div>
+          <!-- 소울컨트리 전용 카드 (이 페이지에서는 숨김) -->
+          <div id="alternative-card" class="detail-card border-purple" style="display: none;">
+            <div class="card-icon">🗺️</div>
+            <h4 data-i18n="alternative_title">차선책으로 추천하는 2순위 국가</h4>
+            <p id="result-alternative"
+              style="font-size: 1.1rem; font-weight: 700; color: var(--color-primary); text-align: center; margin-top: 10px;">
+              2순위 결과명
+            </p>
+          </div>
+        </div>
+
+        <div class="result-actions">
+          <button id="kakao-share-btn" class="btn btn-kakao ripple" data-i18n="share_kakao">💬 카카오톡으로 결과 공유</button>
+          <button id="whatsapp-share-btn" class="btn btn-whatsapp ripple" data-i18n="share_whatsapp">🟢 WhatsApp으로 결과 공유</button>
+          <button id="share-btn" class="btn btn-secondary ripple" data-i18n="copy_link">🔗 결과 링크 복사하기</button>
+          <button id="restart-btn" class="btn btn-outline ripple" data-i18n="restart_btn">🔄 다시 테스트하기</button>
+          <button id="result-home-btn" class="btn btn-outline ripple" data-i18n="home_btn">🏠 테스트 모음 홈으로</button>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /phone-container -->
+
+  <script src="tests-data/past-life.js?v=20260630_v12_multipage"></script>
+  <script src="script-test.js?v=20260630_v12_multipage"></script>
+
+</body>
+
+</html>
