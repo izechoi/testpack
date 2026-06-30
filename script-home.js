@@ -31,7 +31,8 @@ const testPageUrls = {
   'parenting-style': 'parenting-style.html',
   'soul-country':    'soul-country.html',
   'past-life':       'past-life.html',
-  'mbti-test':       'mbti-test.html'
+  'mbti-test':       'mbti-test.html',
+  'buzzword-quiz':   'buzzword-quiz.html'
 };
 
 // ============================================================
@@ -98,11 +99,13 @@ function renderPortalHome() {
       card.style.display = 'block';       // 블록 요소로 표시
     }
 
-    // 카드 내부 HTML (아이콘 + 제목 + 설명)
+    // 카드 내부 HTML (아이콘 + 제목 한 행에 배치, 설명은 하단 배치)
     card.innerHTML = `
-      <div class="test-icon-wrapper">${test.icon}</div>
-      <div class="test-info">
+      <div class="test-card-header">
+        <div class="test-icon-wrapper">${test.icon}</div>
         <h3>${test.title[currentLang]}</h3>
+      </div>
+      <div class="test-card-body">
         <p>${test.description[currentLang]}</p>
         ${test.status === 'ready' ? `<span class="badge-ready">${currentLang === 'ko' ? '준비 중' : 'Coming Soon'}</span>` : ''}
       </div>

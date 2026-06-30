@@ -8,8 +8,8 @@ const testsRegistry = {
   "parenting-style": {
     id: "parenting-style",
     title: {
-      ko: "우리 집 거실 육아 유형 테스트",
-      en: "Living Room Parenting Style Test"
+      ko: "육아 유형 테스트",
+      en: "Parenting Style Test"
     },
     description: {
       ko: "장난감 정리부터 늦잠까지! 매일 거실에서 겪는 10가지 딜레마 속 나의 진짜 동물 유형은?",
@@ -23,8 +23,8 @@ const testsRegistry = {
   "soul-country": {
     id: "soul-country",
     title: {
-      ko: "나에게 맞는 소울 컨트리 찾기",
-      en: "Where is My Soul Country?"
+      ko: "소울 컨트리 테스트",
+      en: "Soul Country Test"
     },
     description: {
       ko: "업무 스타일, 라이프스타일, 예산, 기후 등 가치관 기반 15가지 질문으로 알아보는 나의 완벽한 매칭 국가!",
@@ -38,8 +38,8 @@ const testsRegistry = {
   "past-life": {
     id: "past-life",
     title: {
-      ko: "재미로 보는 나의 전생 유형 테스트",
-      en: "What Was I in My Past Life?"
+      ko: "전생 유형 테스트",
+      en: "Past Life Test"
     },
     description: {
       ko: "이순신 장군부터 클레오파트라까지! 가벼운 10가지 딜레마로 전생 속 당신의 위대한 역사적 정체를 밝혀보세요!",
@@ -53,8 +53,8 @@ const testsRegistry = {
   "mbti-test": {
     id: "mbti-test",
     title: {
-      ko: "개성 만점 인물 캐릭터 MBTI 테스트",
-      en: "Persona Character MBTI Test"
+      ko: "MBTI 캐릭터 테스트",
+      en: "MBTI Character Test"
     },
     description: {
       ko: "15가지 일상 선택으로 분석하는 나의 진짜 MBTI 유형과 이에 어울리는 개성 만점 현대인 캐릭터 캐릭터 매칭!",
@@ -64,5 +64,20 @@ const testsRegistry = {
     status: "active",
     themeClass: "theme-pastel-cream",
     dataPath: "tests-data/mbti-test.js"
+  },
+  "buzzword-quiz": {
+    id: "buzzword-quiz",
+    title: {
+      ko: "유행어 퀴즈",
+      en: "Slang Quiz"
+    },
+    description: {
+      ko: "10대 신조어부터 50대 추억의 유행어까지! 당신의 유행어 인싸 지수는 몇 등급일까요?",
+      en: "From teenage slangs to retro vibes! What is your slang intelligence grade?"
+    },
+    icon: "💬",
+    status: "active",
+    themeClass: "theme-pastel-cream",
+    dataPath: "tests-data/buzzword-quiz.js"
   }
 };
