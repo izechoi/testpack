@@ -138,7 +138,7 @@ function renderIntroScreen() {
   document.getElementById('intro-desc').textContent  = activeTestData.description[currentLang];
 
   const introImg = document.getElementById('intro-image');
-  introImg.src = 'images/dolphin.png'; // 퀴즈 기본 메인 이미지 (돌고래)
+  introImg.src = 'images/trendy-fox.png'; // 퀴즈 기본 메인 이미지 (사막여우)
 
   translateStaticUI();
 }

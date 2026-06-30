@@ -293,18 +293,18 @@ window.activeTestData = {
       maxScore: 10,
       animalName: { ko: "트렌드 신 (100점)", en: "Slang God (100pt)" },
       typeTitle: {
-        ko: "🐬 초음파 수준의 소통력을 갖춘 트렌드의 신 '돌고래'",
-        en: "The Slang Deity: The Ultrasonic Dolphin"
+        ko: "🦊 큰 귀로 온 세대의 트렌드를 포착하는 '사막여우'",
+        en: "The Slang Deity: The Trend-Catching Fennec Fox"
       },
-      image: "images/dolphin.png",
+      image: "images/trendy-fox.png",
       coreTraits: { ko: "트렌드 세터 • 세대 통합 소통력 • 신조어 번역기", en: "Trend Setter • Universal Empathy • Slang Dictionary" },
       summary: {
-        ko: "축하합니다! 10문제를 전부 맞힌 당신은 진정한 트렌드의 신입니다. 10대의 은밀한 밈부터 50대의 복고 감성까지 모든 언어를 정복했습니다.",
-        en: "Perfect! You've decoded every generational reference. You communicate fluently across all generations like a smart dolphin."
+        ko: "축하합니다! 10문제를 전부 맞힌 당신은 진정한 트렌드의 신입니다. 10대의 최신 유행어부터 50대의 레트로 감성까지 모두 사로잡은 사막여우형 인간입니다.",
+        en: "Perfect! You've decoded every generational reference. You communicate fluently across all generations like a smart fennec fox."
       },
       dailyScene: {
-        ko: "당신은 세대의 벽을 허무는 특별한 언어 조율가입니다. 급식체부터 PC통신 용어까지 머릿속의 사전에 막힘없이 데이터가 동기화되어 있어, 10대 조카와도 '디토'하며 웃을 수 있고, 50대 부장님의 '따봉'에도 위트 있게 화답합니다. 어디를 가든 분위기를 유쾌하게 메이킹하는 진정한 소통 능력의 소유자로, 트렌드의 최전선에서 서핑을 즐기는 자유로운 영혼의 모습입니다.",
-        en: "You have a super-updated brain that hosts all generations' cultural databases. From teenagers' secret digital abbreviations to historical retro slangs, you handle conversations without friction. People love talking to you because you get all their references. You keep the vibe fresh, energetic, and extremely charming."
+        ko: "당신은 큰 귀로 온 사방의 소리를 다 듣는 사막여우처럼, 주변 세대의 모든 트렌드를 빠르게 감지하고 소통하는 능력자입니다. 급식체부터 옛 PC통신 용어까지 완벽히 내재화되어 있어, 세대 갈등 없이 누구와도 유쾌하게 어울립니다. 센스 넘치는 패션과 힙한 선글라스를 장착한 듯, 어딜 가나 트렌드를 선도하는 매력적인 주역입니다.",
+        en: "With large ears that catch every whisper of new trends, you act as the ultimate fennec fox navigator. From Gen-Z memes to classic internet slangs, your vocabulary has no bounds. You keep the vibe stylish, energetic, and highly engaging."
       },
       strengths: {
         ko: "유행어 센스 강점: 전 세대 유행어 데이터베이스 완벽 동기화, 트렌드를 빠르게 습득하고 어색함 없이 활용하는 위트.",
