@@ -342,14 +342,13 @@ function copyLink() {
 
 // 카카오톡 공유
 function shareToKakao() {
-  if (!lastCalculatedGrade || !activeTestData) return;
-  const resultData  = activeTestData.results[lastCalculatedGrade];
-  const resultName  = resultData.animalName[currentLang];
-  const shareTitle  = currentLang === 'ko'
-    ? `[유행어 퀴즈] 나의 트렌드 인싸 등급은: '${resultName}'! 당신의 등급은?`
-    : `[Slang Quiz] My Slang Grade: '${resultName}'! Take the challenge!`;
-  const kakaoUrl = `https://sharer.kakao.com/talk/friends/picker/link?url=${encodeURIComponent(window.location.href)}&title=${encodeURIComponent(shareTitle)}`;
-  window.open(kakaoUrl, '_blank');
+  // [공지] 카카오톡 웹 공유 링크(sharer.kakao.com) 서비스 폐쇄로 인한 클립보드 자동 복사 우회 처리
+  if (currentLang === 'ko') {
+    alert("🔒 카카오톡 보안 정책 강화로 인해 공유 링크가 자동으로 복사되었습니다!\n카카오톡 대화방에 붙여넣기(Ctrl + V)하여 친구들과 편리하게 공유해 보세요.");
+  } else {
+    alert("🔒 Link copied to clipboard due to KakaoTalk security policy.\nPlease paste (Ctrl + V) in your KakaoTalk chat room to share!");
+  }
+  copyLink(); // 클립보드 복사 함수 호출
 }
 
 // 왓츠앱 공유
