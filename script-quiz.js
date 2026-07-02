@@ -5,6 +5,13 @@
  */
 
 // ============================================================
+// 카카오 SDK 초기화 (결과 공유용)
+// ============================================================
+if (typeof Kakao !== 'undefined' && !Kakao.isInitialized()) {
+  Kakao.init('5251b2427d7ba66cb0cff4ca6bac975e');
+}
+
+// ============================================================
 // 1. 다국어 사전 (퀴즈 진행 화면에 필요한 텍스트)
 // ============================================================
 const i18nDict = {
@@ -342,13 +349,62 @@ function copyLink() {
 
 // 카카오톡 공유
 function shareToKakao() {
-  // [공지] 카카오톡 웹 공유 링크(sharer.kakao.com) 서비스 폐쇄로 인한 클립보드 자동 복사 우회 처리
+  if (!lastCalculatedGrade || !activeTestData) return;
+
+  const resultData  = activeTestData.results[lastCalculatedGrade];
+  const resultName  = resultData.animalName[currentLang];
+  const resultTitle = currentLang === 'ko'
+    ? `[유행어 퀴즈] 나의 트렌드 등급은 '${resultName}'!`
+    : `[Slang Quiz] My slang grade is '${resultName}'!`;
+  
+  const resultDesc = currentLang === 'ko'
+    ? `유행어 퀴즈 최종 결과: 맞힌 개수 ${quizScore}/10개. 당신도 트렌드 인싸 등급을 측정해 보세요!`
+    : `Slang Quiz Result: Score ${quizScore}/10. Test your trend grade now!`;
+
+  // 유행어 결과 페이지에는 동물 이미지가 없으므로, 대표 썸네일인 사막여우 캐릭터 이미지를 절대경로로 주입
+  const imageUrl = window.location.origin + '/images/trendy-fox.png';
+
+  // 카카오 SDK 연동
+  if (typeof Kakao !== 'undefined') {
+    try {
+      Kakao.Share.sendDefault({
+        objectType: 'feed',
+        content: {
+          title: resultTitle,
+          description: resultDesc,
+          imageUrl: imageUrl,
+          link: {
+            mobileWebUrl: window.location.href,
+            webUrl: window.location.href,
+          },
+        },
+        buttons: [
+          {
+            title: currentLang === 'ko' ? '퀴즈 도전하기' : 'Try Quiz',
+            link: {
+              mobileWebUrl: window.location.origin + window.location.pathname,
+              webUrl: window.location.origin + window.location.pathname,
+            },
+          },
+        ],
+      });
+    } catch (err) {
+      console.error('Kakao share error:', err);
+      fallbackCopyShare();
+    }
+  } else {
+    fallbackCopyShare();
+  }
+}
+
+// 카카오 공유 실패 시 폴백 함수
+function fallbackCopyShare() {
   if (currentLang === 'ko') {
     alert("🔒 카카오톡 보안 정책 강화로 인해 공유 링크가 자동으로 복사되었습니다!\n카카오톡 대화방에 붙여넣기(Ctrl + V)하여 친구들과 편리하게 공유해 보세요.");
   } else {
     alert("🔒 Link copied to clipboard due to KakaoTalk security policy.\nPlease paste (Ctrl + V) in your KakaoTalk chat room to share!");
   }
-  copyLink(); // 클립보드 복사 함수 호출
+  copyLink();
 }
 
 // 왓츠앱 공유
