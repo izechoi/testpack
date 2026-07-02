@@ -34,7 +34,8 @@ const i18nDict = {
     share_whatsapp:    "🟢 WhatsApp으로 결과 공유",
     copy_link:         "🔗 결과 링크 복사하기",
     restart_btn:       "🔄 다시 테스트하기",
-    home_btn:          "🏠 테스트 모음 홈으로"
+    home_btn:          "🏠 테스트 모음 홈으로",
+    save_image:        "📸 결과 화면 이미지 저장"
   },
   en: {
     back_btn:          "↩ Home",
@@ -51,7 +52,8 @@ const i18nDict = {
     share_whatsapp:    "🟢 Share via WhatsApp",
     copy_link:         "🔗 Copy Link to Clipboard",
     restart_btn:       "🔄 Retake Test",
-    home_btn:          "🏠 Back to Portal Home"
+    home_btn:          "🏠 Back to Portal Home",
+    save_image:        "📸 Save Result as Image"
   }
 };
 
@@ -685,6 +687,59 @@ function shareToWhatsApp() {
   window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`, '_blank');
 }
 
+// 결과 화면 캡처 및 저장 (html2canvas)
+function saveResultImage() {
+  if (typeof html2canvas === 'undefined') {
+    alert(currentLang === 'ko'
+      ? '이미지 캡처 라이브러리가 로드되지 않았습니다.'
+      : 'Image capture library is not loaded.');
+    return;
+  }
+
+  const btnEl = document.getElementById('save-image-btn');
+  const originalText = btnEl.textContent;
+  btnEl.textContent = currentLang === 'ko' ? '📸 이미지 생성 중...' : '📸 Creating Image...';
+  btnEl.disabled = true;
+
+  const captureArea = document.getElementById('phone-container');
+  if (!captureArea) {
+    btnEl.textContent = originalText;
+    btnEl.disabled = false;
+    return;
+  }
+
+  html2canvas(captureArea, {
+    ignoreElements: (element) => {
+      return element.classList.contains('result-actions') || 
+             element.classList.contains('screen-header') ||
+             element.id === 'back-to-home';
+    },
+    useCORS: true,
+    scale: 2
+  }).then(canvas => {
+    const link = document.createElement('a');
+    const filename = activeTestData && activeTestData.title
+      ? `${activeTestData.title[currentLang].replace(/\s+/g, '_')}_result.png`
+      : 'test_result.png';
+
+    link.download = filename;
+    link.href = canvas.toDataURL('image/png');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    btnEl.textContent = originalText;
+    btnEl.disabled = false;
+  }).catch(err => {
+    console.error('Image capture error:', err);
+    alert(currentLang === 'ko'
+      ? '이미지 저장 도중 오류가 발생했습니다. 직접 화면을 캡처해 주세요.'
+      : 'An error occurred while saving the image. Please take a screenshot manually.');
+    btnEl.textContent = originalText;
+    btnEl.disabled = false;
+  });
+}
+
 // ============================================================
 // 14. 초기화 실행 (페이지 로드 시 자동 실행)
 // ============================================================
@@ -731,4 +786,7 @@ resultHomeBtn.addEventListener('click', () => { window.location.href = 'index.ht
 shareBtn.addEventListener('click', copyLink);
 kakaoShareBtn.addEventListener('click', shareToKakao);
 whatsappShareBtn.addEventListener('click', shareToWhatsApp);
+
+const saveImageBtn = document.getElementById('save-image-btn');
+if (saveImageBtn) saveImageBtn.addEventListener('click', saveResultImage);
 
