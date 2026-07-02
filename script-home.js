@@ -13,13 +13,31 @@ const i18nDict = {
     portal_badge: "글로벌 성향 & 심리 테스트",
     portal_title: "유형 검사 분석 포털",
     portal_subtitle: "나의 소울 국가 매칭부터 전생 위인 분석, 개성 만점 MBTI 테스트까지 한 곳에서 즐겨보세요!",
-    portal_footer: "© 2026 테스트 연구소. All rights reserved."
+    portal_footer: "© 2026 테스트 연구소. All rights reserved.",
+    update_notice: "📢 [정기 업데이트] 매월 1일, 15일 신규 유형 분석 및 심리 테스트 정기 업데이트 완료!",
+    column_section_title: "🔍 성향 분석 및 유형 연구 칼럼",
+    column_section_subtitle: "각 분야별 유형 분석에 따른 심리학적 연구 보고서와 실생활 가이드를 제공합니다.",
+    column_1_title: "1. 부모의 양육 태도가 자녀 정서에 미치는 영향",
+    column_1_body: "부모의 양육 태도는 자녀의 자아존중감과 정서 발달에 결정적인 이정표가 됩니다. 심리학자 바움린드(Diana Baumrind)의 연구에 따르면, 부모의 양육 방식은 통제(Demandingness)와 애정(Responsiveness)이라는 두 가지 축을 기준으로 크게 네 가지(권위가 있는 양육, 권위주의적 양육, 허용적 양육, 방임적 양육) 스타일로 나뉩니다. 첫째, '권위가 있는 양육(Authoritative)' 스타일은 자녀의 행동 기준을 합리적으로 통제하되, 애정과 지지를 아끼지 않는 가장 이상적인 방식입니다. 이러한 환경에서 자란 자녀는 자기 통제력이 높고 자아 성찰 능력이 뛰어난 독립적인 성격을 형성하게 됩니다. 둘째, 통제는 강하지만 따뜻함이 결여된 '권위주의적 양육(Authoritarian)'은 자녀에게 지나친 규칙 강요로 정서적 억압을 가져올 수 있어 주의가 요구됩니다. 셋째, 지지는 풍부하나 통제가 부족한 '허용적 양육(Permissive)'은 자녀의 창의성을 발휘시킬 수 있으나 충동 통제가 다소 어려울 수 있습니다. 본 포털의 부모 유형 진단은 이 네 가지 기본 이론을 토대로, 매일 거실에서 발생하는 일상적 상황을 접목하여 부모 스스로 자신의 양육적 특징(민감성, 통제성, 일관성)을 유쾌하게 되돌아보고, 아동 발달을 돕는 구체적인 정서 훈육 솔루션을 제공하는 것을 목적으로 연구 및 큐레이션 되었습니다.",
+    column_2_title: "2. 가치관 기반 글로벌 정착지 선택의 심리적 배경",
+    column_2_body: "인간은 일정한 정주 환경을 벗어나 자신과 완벽히 공명하는 라이프스타일 환경을 찾을 때 극대화된 행복과 심리적 안정감을 느낍니다. 이를 인문지리학 및 환경심리학에서는 '장소 애착(Place Attachment)'과 '환경 적합성(Person-Environment Fit)' 이론으로 설명합니다. 개인이 선호하는 자연 기후, 치안 수준, 공공 인프라, 그리고 개인주의적 가치관과 공동체주의적 가치관의 성향 차이는 삶의 만족도에 심대한 영향을 끼칩니다. 예컨대, 시원하고 차분한 북유럽의 복지 및 개인주의 시스템을 선호하는 사람과 따뜻하고 여유로운 동남아시아의 휴양 인프라 및 가성비를 중시하는 사람이 동일한 물리적 환경에 처했을 때 느끼는 체류 생산성은 완전히 상이합니다. 본 찰떡 궁합 나라 찾기 테스트는 개인이 인지하는 노동과 여가(Work-Life Balance)의 가중치, 소비 예산의 가성비 선호도, 공공 치안 안전의 마지노선 등 15가지 세부 지표를 리커트 척도 눈금으로 정밀 계량합니다. 이를 바탕으로 글로벌 주요 14개국 데이터를 실시간 비교 분석하여, 단순한 관광지를 넘어 장기 체류(한 달 살기, 디지털 노마드) 시 문화 충격을 최소화하고 자아 실현을 이뤄낼 수 있는 이상적인 정주 국가를 학술적으로 큐레이션합니다.",
+    column_3_title: "3. 세대 간 신조어 사용과 사회학적 동조 경향",
+    column_3_body: "유행어와 신조어는 단순한 언어적 일탈을 넘어, 시대를 관통하는 집단적 무의식과 사회적 유대감을 투영하는 가장 원초적인 문화 거울입니다. 사회학에서 말하는 '동조 현상(Conformity)'과 '하위문화(Subculture)' 전파 이론에 따르면, 새로운 은어나 단축어의 등장은 특정 연령층이나 커뮤니티 내부의 강력한 소속감과 정체성을 확보하는 수단으로 기능합니다. 10대의 스마트폰 밈과 20대의 트렌디한 약어들은 급변하는 모바일 매체 환경을 생존하기 위한 언어적 효율성의 산물인 반면, 40~50대의 추억 어린 유행어나 복고풍 언어들은 과거 경제 성장기와 PC통신 여명기를 공유하는 정서적 향수(Nostalgia)의 매개체입니다. 본 세대 공감 유행어 퀴즈는 각 세대가 겪어온 시대상을 투영하는 10가지 객관식 유행어 문항을 통해, 사용자가 서로 다른 세대의 언어 문화 구조를 얼마나 깊이 공감하고 번역해낼 수 있는지 측정합니다. 테스트를 통해 자신의 언어 스펙트럼과 유연성을 깨닫는 동시에, 타 세대와의 상호 소통력을 넓혀나가는 융합형 커뮤니케이션 리더로 거듭날 수 있는 방향성을 시사합니다."
   },
   en: {
     portal_badge: "Global Persona & Mind Tests",
     portal_title: "Type Analysis Portal",
     portal_subtitle: "From matching your soul country to discovering your past life and personality character tests!",
-    portal_footer: "© 2026 Test Lab. All rights reserved."
+    portal_footer: "© 2026 Test Lab. All rights reserved.",
+    update_notice: "📢 [Regular Updates] New personality tests and analysis columns are updated on the 1st and 15th of every month.",
+    column_section_title: "🔍 Personality Analysis & Psychological Columns",
+    column_section_subtitle: "Providing psychological research reports and practical guidelines based on type analysis.",
+    column_1_title: "1. The Impact of Parenting Attitude on Children's Emotional Development",
+    column_1_body: "A parent's parenting attitude acts as a decisive milestone in a child's self-esteem and emotional development. According to research by psychologist Diana Baumrind, parenting styles are broadly divided into four categories (authoritative, authoritarian, permissive, and neglectful) based on demandingness and responsiveness. First, the 'authoritative' style controls the child's standards of behavior reasonably but provides affection and support. Children raised in this environment form independent personalities with high self-control. Second, 'authoritarian' parenting, which is highly demanding but lacks warmth, requires caution as it can cause emotional oppression due to excessive rules. Third, 'permissive' parenting, which has abundant support but lacks control, can express creativity but might make impulse control difficult. The Parenting Style Test on this portal is designed to let parents reflect on their characteristics (sensitivity, control, consistency) by combining daily situations in the living room based on these basic psychological theories.",
+    column_2_title: "2. Psychological Background of Values-Based Global Relocation Site Selection",
+    column_2_body: "Humans experience maximized happiness and psychological stability when they find a lifestyle environment that resonates perfectly with them, out of their static residence. In human geography and environmental psychology, this is explained by 'Place Attachment' and 'Person-Environment Fit' theories. Individual preferences for natural climate, public safety, infrastructure, and values of individualism versus collectivism affect life satisfaction deeply. For example, a person who prefers Northern Europe's welfare and individualism systems versus one who values Southeast Asia's tropical resort infrastructure and cost efficiency will experience totally different productivity. The Soul Country Matching Test precisely measures 15 detailed indexes, including work-life balance weights, cost preferences, and safety boundaries. By analyzing data from 14 major global countries, it academically curates the ideal country to minimize cultural shock and achieve self-actualization during long-term stays.",
+    column_3_title: "3. Generational Slang Usage and Sociological Conformity Tendencies",
+    column_3_body: "Slangs and neologisms are not simple linguistic deviations, but the most primitive cultural mirrors projecting collective unconsciousness and social solidarity. According to 'Conformity' and 'Subculture' propagation theories in sociology, the appearance of new slangs functions as a means of securing a strong sense of belonging and identity. Gen-Z's smartphone memes and abbreviation codes are products of linguistic efficiency for survival in the rapidly changing mobile media environment, while retro slangs of the 40s and 50s are media of nostalgia sharing the economic growth era. The Slang Quiz measures how deeply users can empathize and translate different generations' linguistic cultures through 10 choice questions. It lets users realize their linguistic spectrum and suggests direction to grow into a convergent communication leader who expands empathy across generations."
   }
 };
 
@@ -182,6 +200,45 @@ const policyContent = {
         <p>This portal bears no responsibility for the contents of third-party advertisements or external domains.</p>
       `
     }
+  },
+  about: {
+    title: { ko: "포털 소개 (About Us)", en: "About Our Portal" },
+    body: {
+      ko: `
+        <h4>1. 포털 개요 및 설립 목적</h4>
+        <p>유형 검사 분석 포털(테스트 연구소)은 인간의 가치관, 심리 성향, 행동 패턴을 다각도로 분석하여 나 자신과 타인에 대한 더 깊은 이해를 돕는 전문 연구 포털입니다.</p>
+        <h4>2. 과학적 학술 이론 기반</h4>
+        <p>본 포털의 진단 서비스는 발달심리학(Baumrind의 양육 스타일 이론), 환경심리학(Person-Environment Fit 이론), 사회학(하위문화 동조 경향) 등 검증된 학술적 이론과 데이터 가중치 분석 알고리즘에 입각하여 고안되었습니다.</p>
+        <h4>3. 콘텐츠 정책 및 투명성</h4>
+        <p>저희는 사용자의 개인식별정보를 전혀 수집하거나 저장하지 않는 투명한 운영을 고수하며, 사용자 신뢰에 부합하는 클린 콘텐츠 환경과 정기적인 보완 아티클 발행을 약속드립니다.</p>
+      `,
+      en: `
+        <h4>1. Overview & Purpose</h4>
+        <p>The Type Analysis Portal is a professional research platform designed to help understand human behaviors, values, and psychological tendencies.</p>
+        <h4>2. Academic Frameworks</h4>
+        <p>Our assessment tools are designed based on developmental psychology, environmental psychology, and sociological conformity theories.</p>
+        <h4>3. Privacy & Trust Policy</h4>
+        <p>We do not collect personal data and guarantee complete transparency and user trust in our services.</p>
+      `
+    }
+  },
+  contact: {
+    title: { ko: "공식 문의하기 (Contact Us)", en: "Contact Us" },
+    body: {
+      ko: `
+        <h4>1. 공식 지원 및 연구 협업 제보 채널</h4>
+        <p>서비스 이용 관련 피드백, 제휴 문의, 학술 연구 협업 및 시스템 오류 제보는 아래의 전용 지원 창구로 연락 주시면 신속하게 검토하겠습니다.</p>
+        <p><b>공식 이메일:</b> prosum87@gmail.com</p>
+        <p><b>회신 소요 시간:</b> 영업일 기준 평균 48시간 이내에 처리해 드립니다.</p>
+        <p><b>오프라인 연구실:</b> 서울특별시 마포구 백범로 31길 (테스트 연구소 랩)</p>
+      `,
+      en: `
+        <h4>1. Official Contact Channel</h4>
+        <p>For any business inquiries, academic collaborations, or system feedback, please reach out to our team.</p>
+        <p><b>Email:</b> prosum87@gmail.com</p>
+        <p><b>Response Time:</b> Within 48 hours on business days.</p>
+      `
+    }
   }
 };
 
@@ -201,20 +258,54 @@ function closePolicyModal() {
   document.getElementById('policy-modal').classList.remove('active');
 }
 
+// 아코디언 접힘/펼침 이벤트 설정
+function initAccordion() {
+  const headers = document.querySelectorAll('.accordion-header');
+  headers.forEach(header => {
+    header.addEventListener('click', () => {
+      const item = header.parentElement;
+      const content = header.nextElementSibling;
+      const arrow = header.querySelector('.accordion-arrow');
+
+      const isActive = item.classList.contains('active');
+
+      // 중복 오픈 가능하도록 타 항목 닫기
+      document.querySelectorAll('.accordion-item').forEach(el => {
+        el.classList.remove('active');
+        const c = el.querySelector('.accordion-content');
+        if (c) c.style.maxHeight = null;
+        const a = el.querySelector('.accordion-arrow');
+        if (a) a.textContent = '▼';
+      });
+
+      if (!isActive) {
+        item.classList.add('active');
+        content.style.maxHeight = content.scrollHeight + "px";
+        arrow.textContent = '▲';
+      }
+    });
+  });
+}
+
 // ============================================================
 // 8. 초기화 실행 (페이지 로드 시 자동 실행)
 // ============================================================
 detectLanguage();       // 브라우저 언어 감지
 translateStaticUI();    // 정적 UI 번역 적용
 renderPortalHome();     // 테스트 카드 목록 렌더링
+initAccordion();        // 아코디언 초기화 추가
 
 // 정책 모달 버튼 이벤트 연결
+const linkAbout      = document.getElementById('link-about');
+const linkContact    = document.getElementById('link-contact');
 const linkPrivacy    = document.getElementById('link-privacy');
 const linkTerms      = document.getElementById('link-terms');
 const linkDisclaimer = document.getElementById('link-disclaimer');
 const closeModalBtn  = document.getElementById('close-modal');
 const policyModal    = document.getElementById('policy-modal');
 
+if (linkAbout)      linkAbout.addEventListener('click',      (e) => { e.preventDefault(); openPolicyModal('about'); });
+if (linkContact)    linkContact.addEventListener('click',    (e) => { e.preventDefault(); openPolicyModal('contact'); });
 if (linkPrivacy)    linkPrivacy.addEventListener('click',    (e) => { e.preventDefault(); openPolicyModal('privacy'); });
 if (linkTerms)      linkTerms.addEventListener('click',      (e) => { e.preventDefault(); openPolicyModal('terms'); });
 if (linkDisclaimer) linkDisclaimer.addEventListener('click', (e) => { e.preventDefault(); openPolicyModal('disclaimer'); });
