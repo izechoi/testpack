@@ -309,6 +309,18 @@ function showResult() {
   resultAnimalName.textContent = resultData.animalName[currentLang];
   resultTypeTitle.textContent  = resultData.typeTitle[currentLang];
 
+  // 나이대 뱃지 표시 (점수 대신 유머 있는 정신연령 표현)
+  const existingBadge = document.getElementById('age-badge-display');
+  if (existingBadge) existingBadge.remove();
+  if (resultData.ageBadge) {
+    const ageBadgeEl = document.createElement('div');
+    ageBadgeEl.id = 'age-badge-display';
+    ageBadgeEl.style.cssText = 'display:inline-block; margin: 8px auto 0; padding: 6px 18px; background: linear-gradient(135deg, #ff9a56, #ff6b35); color: #fff; border-radius: 50px; font-size: 1rem; font-weight: 700; letter-spacing: 0.02em; box-shadow: 0 3px 10px rgba(255,107,53,0.35);';
+    ageBadgeEl.textContent = resultData.ageBadge[currentLang];
+    // result-header 안의 result-animal 바로 아래 삽입
+    resultAnimalName.insertAdjacentElement('afterend', ageBadgeEl);
+  }
+
   // 성향 해시태그 렌더링
   resultTraits.innerHTML = '';
   const tags = resultData.coreTraits[currentLang].split('•');
@@ -467,9 +479,9 @@ function saveResultImage() {
   captureArea.style.transform  = 'translateY(0)';
   captureArea.style.background = '#FFFDF9';
 
-  // 저장 버튼 일시 숨김 (캡처 이미지에 버튼이 찍히지 않도록)
-  const saveBtn = document.getElementById('save-image-btn');
-  if (saveBtn) saveBtn.style.display = 'none';
+  // 버튼 영역(result-actions) 전체를 일시 숨김 - 캡처 이미지에 버튼 포함 방지
+  const actionsEl = captureArea.querySelector('.result-actions');
+  if (actionsEl) actionsEl.style.display = 'none';
 
   // 렌더링 사이클 안정화 후 캡처 실행 (rAF + 100ms 지연)
   requestAnimationFrame(() => {
@@ -503,7 +515,8 @@ function saveResultImage() {
         captureArea.style.opacity    = prevOpacity;
         captureArea.style.transform  = prevTransform;
         captureArea.style.background = prevBg;
-        if (saveBtn) saveBtn.style.display = '';
+        // 버튼 영역 복원
+        if (actionsEl) actionsEl.style.display = '';
         btnEl.textContent = originalText;
         btnEl.disabled = false;
       });

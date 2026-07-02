@@ -291,7 +291,8 @@ window.activeTestData = {
     "level_5": {
       minScore: 10,
       maxScore: 10,
-      animalName: { ko: "트렌드 신 (100점)", en: "Slang God (100pt)" },
+      animalName: { ko: "트렌드 신", en: "Slang God" },
+      ageBadge: { ko: "🎯 정신연령 15세", en: "🎯 Mental Age: 15" },
       typeTitle: {
         ko: "🦊 큰 귀로 온 세대의 트렌드를 포착하는 '사막여우'",
         en: "The Slang Deity: The Trend-Catching Fennec Fox"
@@ -322,7 +323,8 @@ window.activeTestData = {
     "level_4": {
       minScore: 8,
       maxScore: 9,
-      animalName: { ko: "트렌드 리더 (80~90점)", en: "Trend Leader (80~90pt)" },
+      animalName: { ko: "트렌드 리더", en: "Trend Leader" },
+      ageBadge: { ko: "🔥 정신연령 20대", en: "🔥 Mental Age: 20s" },
       typeTitle: {
         ko: "🐯 트렌드 전선에서 포효하는 인싸 '호랑이'",
         en: "The Trend Vanguard: The Trendy Tiger"
@@ -353,7 +355,8 @@ window.activeTestData = {
     "level_3": {
       minScore: 5,
       maxScore: 7,
-      animalName: { ko: "평범한 트렌드 추종자 (50~70점)", en: "Average Slang Follower (50~70pt)" },
+      animalName: { ko: "평범한 트렌드 추종자", en: "Average Slang Follower" },
+      ageBadge: { ko: "📅 정신연령 30대", en: "📅 Mental Age: 30s" },
       typeTitle: {
         ko: "🦅 트렌드 흐름을 영리하게 관망하는 '독수리'",
         en: "The Watchful Observer: The Sharp Eagle"
@@ -384,7 +387,8 @@ window.activeTestData = {
     "level_2": {
       minScore: 2,
       maxScore: 4,
-      animalName: { ko: "인터넷 방랑객 (20~40점)", en: "Analog Explorer (20~40pt)" },
+      animalName: { ko: "인터넷 방랑객", en: "Analog Explorer" },
+      ageBadge: { ko: "📼 정신연령 40대", en: "📼 Mental Age: 40s" },
       typeTitle: {
         ko: "🦉 한 세대 늦게 출발하는 아날로그 '부엉이'",
         en: "The Late Owl: The Retro Explorer"
@@ -415,7 +419,8 @@ window.activeTestData = {
     "level_0": {
       minScore: 0,
       maxScore: 1,
-      animalName: { ko: "조선시대 선비 (0~10점)", en: "Joseon Scholar (0~10pt)" },
+      animalName: { ko: "조선시대 선비", en: "Joseon Scholar" },
+      ageBadge: { ko: "🏺 정신연령 조선시대", en: "🏺 Mental Age: Joseon Era" },
       typeTitle: {
         ko: "🦘 타임머신을 타고 온 에코 선비 '캥거루'",
         en: "The Timeless Hermit: The Joseon Scholar"

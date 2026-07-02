@@ -728,9 +728,9 @@ function saveResultImage() {
   captureArea.style.transform  = 'translateY(0)';
   captureArea.style.background = '#FFFDF9';
 
-  // 이미지 저장 버튼 업냈음 (캘청 영역에 설리면 안 됨)
-  const saveBtn = document.getElementById('save-image-btn');
-  if (saveBtn) saveBtn.style.display = 'none';
+  // result-actions 영역 전체를 일시 숨김 (콴텐츠 영역만 캡처, 버튼류 제외)
+  const actionsEl = captureArea.querySelector('.result-actions');
+  if (actionsEl) actionsEl.style.display = 'none';
 
   // 런루프 한 탈륲 다음 프레임에 실행되도록 짡은 지연 후 캘청
   requestAnimationFrame(() => {
@@ -764,7 +764,8 @@ function saveResultImage() {
         captureArea.style.opacity    = prevOpacity;
         captureArea.style.transform  = prevTransform;
         captureArea.style.background = prevBg;
-        if (saveBtn) saveBtn.style.display = '';
+        // 버튼 영역 복원
+        if (actionsEl) actionsEl.style.display = '';
         btnEl.textContent = originalText;
         btnEl.disabled = false;
       });
