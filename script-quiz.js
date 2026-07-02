@@ -445,7 +445,6 @@ function saveResultImage() {
   btnEl.textContent = currentLang === 'ko' ? '📸 이미지 생성 중...' : '📸 Creating Image...';
   btnEl.disabled = true;
 
-  // 폰 테두리 안의 실제 결과 카드 스크린만 정확히 지목하여 가로해상도 극대화
   const captureArea = document.getElementById('result-screen');
   if (!captureArea) {
     btnEl.textContent = originalText;
@@ -453,36 +452,62 @@ function saveResultImage() {
     return;
   }
 
-  html2canvas(captureArea, {
-    ignoreElements: (element) => {
-      return element.classList.contains('result-actions') || 
-             element.classList.contains('screen-header') ||
-             element.id === 'back-to-home';
-    },
-    useCORS: true,
-    scale: 3, // 선명도 3배 고화질 상향
-    backgroundColor: '#FFFDF9' // 투명 잔상으로 뿌옇게 되는 현상 방지를 위해 결과 전용 크림 배경색 적용
-  }).then(canvas => {
-    const link = document.createElement('a');
-    const filename = activeTestData && activeTestData.title
-      ? `${activeTestData.title[currentLang].replace(/\s+/g, '_')}_result.png`
-      : 'quiz_result.png';
+  // 캡처 전: .screen 클래스의 slideFadeIn 애니메이션이 opacity:0에서 시작하므로
+  // html2canvas가 투명하게 렌더링하여 뿌옇게 보이는 현상의 근본 원인.
+  // 캡처 직전 모든 애니메이션을 일시 비활성화하고 완전한 불투명 상태로 고정
+  const prevAnimation  = captureArea.style.animation;
+  const prevTransition = captureArea.style.transition;
+  const prevOpacity    = captureArea.style.opacity;
+  const prevTransform  = captureArea.style.transform;
+  const prevBg         = captureArea.style.background;
 
-    link.download = filename;
-    link.href = canvas.toDataURL('image/png');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  captureArea.style.animation  = 'none';
+  captureArea.style.transition = 'none';
+  captureArea.style.opacity    = '1';
+  captureArea.style.transform  = 'translateY(0)';
+  captureArea.style.background = '#FFFDF9';
 
-    btnEl.textContent = originalText;
-    btnEl.disabled = false;
-  }).catch(err => {
-    console.error('Image capture error:', err);
-    alert(currentLang === 'ko'
-      ? '이미지 저장 도중 오류가 발생했습니다. 직접 화면을 캡처해 주세요.'
-      : 'An error occurred while saving the image. Please take a screenshot manually.');
-    btnEl.textContent = originalText;
-    btnEl.disabled = false;
+  // 저장 버튼 일시 숨김 (캡처 이미지에 버튼이 찍히지 않도록)
+  const saveBtn = document.getElementById('save-image-btn');
+  if (saveBtn) saveBtn.style.display = 'none';
+
+  // 렌더링 사이클 안정화 후 캡처 실행 (rAF + 100ms 지연)
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      html2canvas(captureArea, {
+        useCORS: true,
+        allowTaint: false,
+        scale: window.devicePixelRatio * 2 || 2,
+        backgroundColor: '#FFFDF9',
+        logging: false,
+        imageTimeout: 0
+      }).then(canvas => {
+        const link = document.createElement('a');
+        const filename = activeTestData && activeTestData.title
+          ? `${activeTestData.title[currentLang].replace(/\s+/g, '_')}_result.png`
+          : 'quiz_result.png';
+        link.download = filename;
+        link.href = canvas.toDataURL('image/png');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }).catch(err => {
+        console.error('Image capture error:', err);
+        alert(currentLang === 'ko'
+          ? '이미지 저장 도중 오류가 발생했습니다. 직접 화면을 캡처해 주세요.'
+          : 'An error occurred while saving the image. Please take a screenshot manually.');
+      }).finally(() => {
+        // 모든 스타일 원상복구
+        captureArea.style.animation  = prevAnimation;
+        captureArea.style.transition = prevTransition;
+        captureArea.style.opacity    = prevOpacity;
+        captureArea.style.transform  = prevTransform;
+        captureArea.style.background = prevBg;
+        if (saveBtn) saveBtn.style.display = '';
+        btnEl.textContent = originalText;
+        btnEl.disabled = false;
+      });
+    }, 100);
   });
 }
 

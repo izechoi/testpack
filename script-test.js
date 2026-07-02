@@ -701,7 +701,7 @@ function saveResultImage() {
   btnEl.textContent = currentLang === 'ko' ? '📸 이미지 생성 중...' : '📸 Creating Image...';
   btnEl.disabled = true;
 
-  // 폰 테두리 안의 실제 결과 카드 스크린만 정확히 지목하여 가로해상도 극대화
+  // 케스케디 영역: result-screen (화면 읜직임 애니메이션 포함)
   const captureArea = document.getElementById('result-screen');
   if (!captureArea) {
     btnEl.textContent = originalText;
@@ -709,36 +709,66 @@ function saveResultImage() {
     return;
   }
 
-  html2canvas(captureArea, {
-    ignoreElements: (element) => {
-      return element.classList.contains('result-actions') || 
-             element.classList.contains('screen-header') ||
-             element.id === 'back-to-home';
-    },
-    useCORS: true,
-    scale: 3, // 선명도 3배 고화질 상향
-    backgroundColor: '#FFFDF9' // 투명 잔상으로 뿌옇게 되는 현상 방지를 위해 결과 전용 크림 배경색 적용
-  }).then(canvas => {
-    const link = document.createElement('a');
-    const filename = activeTestData && activeTestData.title
-      ? `${activeTestData.title[currentLang].replace(/\s+/g, '_')}_result.png`
-      : 'test_result.png';
+  // ============================================================
+  // [CRITICAL FIX] 캘청 전 상태 정리:
+  // opacity: 0 애니메이션 / transform 있는 .screen 클래스 이
+  // html2canvas 렌더링 시 활성 앱업 상태를 미으로해 불투명 잠실링 현상
+  // 입힘 한다. 캘청 전 열린 골격으로 잠금시켜야 함.
+  // ============================================================
+  const prevAnimation    = captureArea.style.animation;
+  const prevTransition   = captureArea.style.transition;
+  const prevOpacity      = captureArea.style.opacity;
+  const prevTransform    = captureArea.style.transform;
+  const prevBg           = captureArea.style.background;
 
-    link.download = filename;
-    link.href = canvas.toDataURL('image/png');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  // 애니메이션 일시 업냈음 + 븰통한 흰 배경 고정
+  captureArea.style.animation  = 'none';
+  captureArea.style.transition = 'none';
+  captureArea.style.opacity    = '1';
+  captureArea.style.transform  = 'translateY(0)';
+  captureArea.style.background = '#FFFDF9';
 
-    btnEl.textContent = originalText;
-    btnEl.disabled = false;
-  }).catch(err => {
-    console.error('Image capture error:', err);
-    alert(currentLang === 'ko'
-      ? '이미지 저장 도중 오류가 발생했습니다. 직접 화면을 캡처해 주세요.'
-      : 'An error occurred while saving the image. Please take a screenshot manually.');
-    btnEl.textContent = originalText;
-    btnEl.disabled = false;
+  // 이미지 저장 버튼 업냈음 (캘청 영역에 설리면 안 됨)
+  const saveBtn = document.getElementById('save-image-btn');
+  if (saveBtn) saveBtn.style.display = 'none';
+
+  // 런루프 한 탈륲 다음 프레임에 실행되도록 짡은 지연 후 캘청
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      html2canvas(captureArea, {
+        useCORS: true,
+        allowTaint: false,
+        scale: window.devicePixelRatio * 2 || 2, // 화면 디바이스 픽셀로 비율 자동 조정
+        backgroundColor: '#FFFDF9',
+        logging: false,
+        imageTimeout: 0
+      }).then(canvas => {
+        const link = document.createElement('a');
+        const filename = activeTestData && activeTestData.title
+          ? `${activeTestData.title[currentLang].replace(/\s+/g, '_')}_result.png`
+          : 'test_result.png';
+        link.download = filename;
+        link.href = canvas.toDataURL('image/png');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }).catch(err => {
+        console.error('Image capture error:', err);
+        alert(currentLang === 'ko'
+          ? '이미지 저장 도중 오류가 발생했습니다. 직접 화면을 캡처해 주세요.'
+          : 'An error occurred while saving the image. Please take a screenshot manually.');
+      }).finally(() => {
+        // 모든 스타일 원상복구
+        captureArea.style.animation  = prevAnimation;
+        captureArea.style.transition = prevTransition;
+        captureArea.style.opacity    = prevOpacity;
+        captureArea.style.transform  = prevTransform;
+        captureArea.style.background = prevBg;
+        if (saveBtn) saveBtn.style.display = '';
+        btnEl.textContent = originalText;
+        btnEl.disabled = false;
+      });
+    }, 100); // 100ms 대기: 렌더링 사이클 증산
   });
 }
 
