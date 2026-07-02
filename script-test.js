@@ -701,7 +701,8 @@ function saveResultImage() {
   btnEl.textContent = currentLang === 'ko' ? '📸 이미지 생성 중...' : '📸 Creating Image...';
   btnEl.disabled = true;
 
-  const captureArea = document.getElementById('phone-container');
+  // 폰 테두리 안의 실제 결과 카드 스크린만 정확히 지목하여 가로해상도 극대화
+  const captureArea = document.getElementById('result-screen');
   if (!captureArea) {
     btnEl.textContent = originalText;
     btnEl.disabled = false;
@@ -715,7 +716,8 @@ function saveResultImage() {
              element.id === 'back-to-home';
     },
     useCORS: true,
-    scale: 2
+    scale: 3, // 선명도 3배 고화질 상향
+    backgroundColor: '#FFFDF9' // 투명 잔상으로 뿌옇게 되는 현상 방지를 위해 결과 전용 크림 배경색 적용
   }).then(canvas => {
     const link = document.createElement('a');
     const filename = activeTestData && activeTestData.title

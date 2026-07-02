@@ -167,6 +167,16 @@ function initTest() {
 }
 
 // ============================================================
+// 피셔-예이츠 셔플 알고리즘으로 배열 무작위 섞기 (얕은 복사본 활용)
+function shuffleArray(array) {
+  const arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
 // 9. 문항 동적 렌더링
 // ============================================================
 function renderQuestion() {
@@ -183,8 +193,9 @@ function renderQuestion() {
   questionText.textContent = currentQuestion.scenario[currentLang];
   optionsContainer.innerHTML = ''; // 이전 선택지 초기화
 
-  // 객관식 선택지 렌더링
-  currentQuestion.options.forEach(option => {
+  // [수정완료] 객관식 선택지 무작위 섞어 렌더링
+  const shuffledOptions = shuffleArray(currentQuestion.options);
+  shuffledOptions.forEach(option => {
     const button = document.createElement('button');
     button.className  = 'option-btn ripple';
     button.textContent = option.text[currentLang];
@@ -434,7 +445,8 @@ function saveResultImage() {
   btnEl.textContent = currentLang === 'ko' ? '📸 이미지 생성 중...' : '📸 Creating Image...';
   btnEl.disabled = true;
 
-  const captureArea = document.getElementById('phone-container');
+  // 폰 테두리 안의 실제 결과 카드 스크린만 정확히 지목하여 가로해상도 극대화
+  const captureArea = document.getElementById('result-screen');
   if (!captureArea) {
     btnEl.textContent = originalText;
     btnEl.disabled = false;
@@ -448,7 +460,8 @@ function saveResultImage() {
              element.id === 'back-to-home';
     },
     useCORS: true,
-    scale: 2
+    scale: 3, // 선명도 3배 고화질 상향
+    backgroundColor: '#FFFDF9' // 투명 잔상으로 뿌옇게 되는 현상 방지를 위해 결과 전용 크림 배경색 적용
   }).then(canvas => {
     const link = document.createElement('a');
     const filename = activeTestData && activeTestData.title
